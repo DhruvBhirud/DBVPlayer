@@ -1,15 +1,9 @@
 package com.db.dbvplayer;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.content.Context;
@@ -20,11 +14,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -42,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         permission();
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId())
                 {
                     case R.id.folderList:
@@ -76,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this,"Permission Granted", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Permission Granted", Toast.LENGTH_SHORT).show();
             videoFiles = getAllVideos(this);
             FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                     .beginTransaction();
@@ -86,14 +78,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PERMISSION)
         {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
             {
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
                 videoFiles = getAllVideos(this);
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                         .beginTransaction();
